@@ -1,0 +1,11 @@
+[{:itonami.blueprint/social-impact [:worker-safety :chemical-safety :product-quality]
+  :itonami.blueprint/domain :manufacturing/photographic-products-plant-scheduling-logistics-coordination
+  :itonami.blueprint/required-technologies [:robotics :identity :audit-ledger]
+  :itonami.blueprint/isco-08 "8132"
+  :itonami.blueprint/name "Photographic Products Plant Scheduling and Logistics Coordination Practice"
+  :itonami.blueprint/governor :photo-lab-coord-governor
+  :itonami.blueprint/robotics true
+  :db/id -1
+  :itonami.blueprint/status :public-oss
+  :itonami.blueprint/id "cloud-itonami-isco-8132"
+  :itonami.blueprint/license "AGPL-3.0-or-later"}]
