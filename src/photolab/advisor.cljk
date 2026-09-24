@@ -19,7 +19,7 @@
                :effect :propose :operator-id str :plant-id str
                :cost number :hazard-type kw :task str :stake kw
                :confidence n :rationale str}"
-  (:require [clojure.edn :as edn]))
+  (:require [kotoba.lang.edn :as edn]))
 
 (defprotocol Advisor
   (-advise [advisor store request] "request -> proposal map"))
