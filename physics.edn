@@ -1,0 +1,34 @@
+;; What this vertical's robot physically does, declared for
+;; kotoba.robotics.process (kotoba-lang/robotics). `kbb -M:physics` runs it.
+;;
+;; README "Robotics premise": a plant scheduling/logistics coordination robot
+;; schedules a photographic-products processing crew, logs runs/inventory and
+;; coordinates darkroom-chemical and film-stock supply; it never operates the
+;; processing line. Its physical work is plant logistics: carrying chemical
+;; carboys to the processor, and the processing-tank drain that a scheduled
+;; chemistry change waits for.
+;;
+;; Every number without a cited source is marked `estimate` in its :basis.
+;; Replacing an estimate with a sourced value is this bot's growth work.
+{:physics/schema "itonami.physical-ai.spec.v1"
+ :repo "cloud-itonami/cloud-itonami-isco-8132"
+ :cases
+ [{:id :processing-tank-drain
+   :kind :tank-drain
+   :procedure "a processor tank (developer/fixer) is drained through its dump valve before a chemistry change"
+   :params {:tank-area-m2 0.25 :h0-m 0.6 :h-target-m 0.02 :cd 0.62 :dt-s 0.2}
+   :sweep {:param :orifice-area-m2 :values [0.0001 0.0002 0.0003 0.0005 0.0008]}
+   :quantity :time-to-target-s
+   :limit {:max 300.0 :basis "estimate: 5-minute window for a chemistry change in the processing schedule"}
+   :boundary {:lo 0.00005 :hi 0.002}}
+  {:id :carboy-cart
+   :kind :transport
+   :procedure "cart carries replenisher carboys from the chemical store to the processor"
+   :params {:mass-kg 30.0 :distance-m 40.0 :v-max-mps 0.8 :a-max-mps2 0.4
+            :brake-decel-mps2 1.5 :drive-force-n 60.0 :crr 0.02
+            :cog-height-m 0.30 :payload-cog-height-m 0.55 :support-half-length-m 0.25
+            :max-time-s 1200.0}
+   :sweep {:param :payload-kg :values [10.0 20.0 40.0 60.0 100.0]}
+   :quantity :min-tipover-margin
+   :limit {:min 0.3 :basis "estimate: 30 % tip-over reserve with liquid carboys when the cart brakes at 1.5 m/s²"}
+   :boundary {:lo 1.0 :hi 300.0}}]}
