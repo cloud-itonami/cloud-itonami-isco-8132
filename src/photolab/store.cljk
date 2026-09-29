@@ -1,7 +1,7 @@
 (ns photolab.store
   "SSoT for the ISCO-08 8132 photographic products machine operators
   plant scheduling/logistics coordination actor (itonami actor
-  pattern, ADR-2607121000 / CLAUDE.md Actors section; README's
+  pattern, ADR-2607121000 / AGENTS.md Actors section; README's
   'Robotics premise' — a plant scheduling/logistics coordination robot
   performs crew scheduling, production-run/inventory/progress record
   logging and darkroom-chemical/film-stock supply-order coordination
